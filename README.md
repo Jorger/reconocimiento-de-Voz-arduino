@@ -1,4 +1,4 @@
-reconocimiento-de-Voz-arduino
+Reconocimiento de voz arduino
 =============================
 
 Sistema de reconocimiento de voz con el API de Google Chrome, para enviar ordenes de inicio y detención de un servomotor.
