@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reconocimiento</title>
+<style>
+#mic
+  {
+      color: transparent;
+      background-color: transparent;
+      border: 0;
+      width: 15px;
+      margin: 40px 36px;
+      -webkit-transform: scale(8.0, 8.0);
+      -moz-transform: scale(8.0, 8.0);
+      -ms-transform: scale(8.0, 8.0);
+      transform: scale(8.0, 8.0);
+  }
+</style>
+<script type="text/javascript" src = "socket.io.min.js"></script>
+<script>
+var serverBaseUrl = "http://localhost:8080";
+var socket = io.connect(serverBaseUrl);
+var sessionId = '';
+socket.on('connect', function ()
+{
+    sessionId = socket.socket.sessionid;
+    socket.emit('newUser', {id: sessionId});
+});
+function transcribe(words)
+{ 
+    socket.emit('msg', {p: words});
+}
+</script>
+</head>
+<body>
+  <br><br>
+<div align = 'center'>
+    <input  id = 'mic' x-webkit-speech='' onwebkitspeechchange = "transcribe(this.value)"><br>
+</div>
+</body>
+</html>
